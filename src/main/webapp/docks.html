@@ -19,15 +19,15 @@
     <table>
         <tr>
             <th>Station Name</th>
+            <th>Docks</th>
+            <th>Bikes</th>
             <th>Status</th>
-            <th>Available Docks</th>
-            <th>Available Bikes</th>
         </tr>
         <tr ng-repeat="x in docks">
             <td>{{ x.stationName }}</td>
-            <td>{{ x.statusValue }}</td>
             <td>{{ x.availableDocks }}</td>
             <td>{{ x.availableBikes }}</td>
+            <td>{{ x.statusValue }}</td>
         </tr>
     </table>
 
