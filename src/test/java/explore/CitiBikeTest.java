@@ -1,5 +1,7 @@
 package explore;
 
+import com.google.gson.JsonElement;
+
 import static org.junit.Assert.*;
 
 /**
@@ -8,9 +10,8 @@ import static org.junit.Assert.*;
 public class CitiBikeTest {
 
     @org.junit.Test
-    public void testGetStatus() throws Exception {
-        // This test is not correct... how to assert when data may be different everytime?
-        System.out.println(CitiBike.getStatus("default"));
-        System.out.println(CitiBike.getStatus("set2"));
+    public void testGetStatusByGroupName() throws Exception {
+        JsonElement status = CitiBike.getStatus("penn");
+        assertNotNull(status);
     }
 }

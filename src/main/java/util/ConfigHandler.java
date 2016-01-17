@@ -2,6 +2,7 @@ package util;
 
 import com.typesafe.config.ConfigFactory;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +25,13 @@ public class ConfigHandler {
 
     public static Set getFavoriteStations(String whichSet) {
         Set<String> faves = new HashSet<String>();
-        List<String> list = config.getStringList("citibike2.stations.favorites." + whichSet);
+        List<String> list = Collections.emptyList();
+        try {
+            list = config.getStringList("citibike2.stations.favorites." + whichSet);
+        } catch (Exception e) {
+            list = config.getStringList("citibike2.stations.favorites.chelsea");
+        }
+
         for(String s: list) {
             faves.add(s);
         }

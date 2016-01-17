@@ -20,14 +20,14 @@
         <tr>
             <th>Station Name</th>
             <th>Status</th>
-            <th>Available Bikes</th>
             <th>Available Docks</th>
+            <th>Available Bikes</th>
         </tr>
         <tr ng-repeat="x in names">
             <td>{{ x.stationName }}</td>
             <td>{{ x.statusValue }}</td>
-            <td>{{ x.availableBikes }}</td>
             <td>{{ x.availableDocks }}</td>
+            <td>{{ x.availableBikes }}</td>
         </tr>
     </table>
 
@@ -36,7 +36,7 @@
 <script>
 var app = angular.module('myApp', []);
 app.controller('dataCtrl', function($scope, $http) {
-    $http.get("/bike/default")
+    $http.get("/bike")
     .then(function (response) {$scope.names = response.data.records;});
 });
 </script>
