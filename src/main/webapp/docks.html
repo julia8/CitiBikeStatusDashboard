@@ -23,7 +23,7 @@
             <th>Available Docks</th>
             <th>Available Bikes</th>
         </tr>
-        <tr ng-repeat="x in names">
+        <tr ng-repeat="x in docks">
             <td>{{ x.stationName }}</td>
             <td>{{ x.statusValue }}</td>
             <td>{{ x.availableDocks }}</td>
@@ -34,11 +34,14 @@
 </div>
 
 <script>
-var app = angular.module('myApp', []);
-app.controller('dataCtrl', function($scope, $http) {
-    $http.get("/bike")
-    .then(function (response) {$scope.names = response.data.records;});
-});
+    var app = angular.module('myApp', []).run(function($rootScope, $location) { $rootScope.location = $location; });
+
+    app.controller('dataCtrl', function($scope, $http) {
+    $http.get("/bike" + location.search)
+    .then(
+    function (response) { $scope.docks = response.data.records;}
+    );
+    });
 </script>
 
 </body>

@@ -29,7 +29,7 @@ public class ConfigHandler {
         try {
             list = config.getStringList("citibike2.stations.favorites." + whichSet);
         } catch (Exception e) {
-            list = config.getStringList("citibike2.stations.favorites.chelsea");
+            list = config.getStringList("citibike2.stations.favorites.julia");
         }
 
         for(String s: list) {

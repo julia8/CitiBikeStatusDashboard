@@ -19,22 +19,16 @@ public class CitiServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        JsonElement status = getStatus(req.getPathInfo());
+        System.out.println(req.getQueryString());
+        JsonElement status = getStatus(req.getQueryString());
 
         resp.setContentType("application/json; charset=utf-8");
         resp.getWriter().print(status.toString());
 
     }
 
-    protected JsonElement getStatus(String path) {
-        String whichSet = null;
-
-        if(path != null) {
-            String[] pathParts = path.split("/");
-            if (pathParts != null && pathParts.length > 1) {
-                whichSet = pathParts[1];
-            }
-        }
+    protected JsonElement getStatus(String query) {
+        String whichSet = query == null ? "chelsea" : query;
         return CitiBike.getStatus(whichSet);
     }
 }

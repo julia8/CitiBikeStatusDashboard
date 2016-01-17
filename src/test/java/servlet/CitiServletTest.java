@@ -17,6 +17,6 @@ public class CitiServletTest {
     @Test
     public void testGetDefaultStatus() throws Exception {
         CitiServlet s = new CitiServlet();
-        assertNotNull(s.getStatus("/penn"));
+        assertNotNull(s.getStatus("penn"));
     }
 }
