@@ -18,13 +18,13 @@ public class ConfigHandler {
             String apikey = config.getString("mta.apikey");
             return urlSource.replace("{key}", apikey);
         } else {
-            return config.getString("citibike.statusUrl");
+            return config.getString("citibike2.statusUrl");
         }
     }
 
-    public static Set getFavoriteStations() {
+    public static Set getFavoriteStations(String whichSet) {
         Set<String> faves = new HashSet<String>();
-        List<String> list = config.getStringList("citibike.stations.favorites");
+        List<String> list = config.getStringList("citibike2.stations.favorites." + whichSet);
         for(String s: list) {
             faves.add(s);
         }

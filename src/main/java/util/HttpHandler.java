@@ -17,13 +17,18 @@ public class HttpHandler {
     private static HttpClient client = HttpClientBuilder.create().build();
 
     public static JsonObject getJsonFromUrl(String url) {
+        HttpGet getRequest = null;
         try {
-            HttpGet getRequest = new HttpGet(url);
+            getRequest = new HttpGet(url);
             HttpResponse response = client.execute(getRequest);
             Gson g = new Gson();
             return g.fromJson(new InputStreamReader(response.getEntity().getContent()), JsonObject.class);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if(getRequest != null) {
+                getRequest.releaseConnection();
+            }
         }
         return null;
     }

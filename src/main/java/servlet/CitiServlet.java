@@ -11,14 +11,22 @@ import java.io.IOException;
 
 @WebServlet(
         name = "BikeServlet",
-        urlPatterns = {"/bike"}
+        urlPatterns = {"/bike/*"}
 )
 public class CitiServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        String path = req.getPathInfo();
+        String[] pathParts = path.split("/");
+        String whichSet = "default";
+        if(pathParts != null && pathParts.length > 1) {
+            whichSet = pathParts[1];
+        }
+
         resp.setContentType("application/json; charset=utf-8");
-        resp.getWriter().print(CitiBike.getStatus().toString());
+        resp.getWriter().print(CitiBike.getStatus(whichSet).toString());
+
     }
 }

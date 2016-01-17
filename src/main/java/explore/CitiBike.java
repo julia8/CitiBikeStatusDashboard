@@ -15,13 +15,14 @@ import java.util.Set;
  */
 public class CitiBike {
     public static void main(String[] args) {
-        System.out.println(getStatus().toString());
+        System.out.println(getStatus("default").toString());
     }
-    public static JsonElement getStatus() {
+
+    public static JsonElement getStatus(String whichSet) {
 
         JsonObject obj = HttpHandler.getJsonFromUrl(ConfigHandler.getURL("citibike"));
-        JsonElement r = obj.get("results");
-        Set<String> favoriteStations = ConfigHandler.getFavoriteStations();
+        JsonElement r = obj.get("stationBeanList");
+        Set<String> favoriteStations = ConfigHandler.getFavoriteStations(whichSet);
 
         JsonArray statusArray = new JsonArray();
         if(r.isJsonArray()) {
@@ -36,7 +37,8 @@ public class CitiBike {
 
         }
         JsonObject faveStatus = new JsonObject();
-
-        return statusArray;
+        JsonObject records = new JsonObject();
+        records.add("records", statusArray);
+        return records;
     }
 }
