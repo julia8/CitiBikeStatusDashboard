@@ -10,9 +10,6 @@ import util.HttpHandler;
 import java.util.Iterator;
 import java.util.Set;
 
-/**
- * Created by Julia on 1/15/2016.
- */
 public class CitiBike {
     public static void main(String[] args) {
         System.out.println(getStatus("default").toString());
@@ -27,10 +24,10 @@ public class CitiBike {
         JsonArray statusArray = new JsonArray();
         if(r.isJsonArray()) {
             JsonArray a = r.getAsJsonArray();
-            for(Iterator<JsonElement> it = a.iterator(); it.hasNext();) {
-                JsonObject next = it.next().getAsJsonObject();
+            for (JsonElement anA : a) {
+                JsonObject next = anA.getAsJsonObject();
                 String id = next.get("id").getAsString();
-                if(favoriteStations.contains(id)) {
+                if (favoriteStations.contains(id)) {
                     statusArray.add(next);
                 }
             }

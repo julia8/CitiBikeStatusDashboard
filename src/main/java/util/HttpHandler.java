@@ -10,9 +10,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.InputStreamReader;
 
-/**
- * Created by Julia on 1/15/2016.
- */
 public class HttpHandler {
     private static HttpClient client = HttpClientBuilder.create().build();
 

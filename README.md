@@ -1,6 +1,18 @@
-Leveraging transit data feeds to plan daily commute.  
+Functional Description
+======================
+Provides a dashboard to display number of free docks and bikes at  pre-configured set of citibike stations.  
+The sets are specified in the `application.conf file`.
 
-Currently provides a dashboard to display free docks and bikes at freqently used citibike stations.  
-See: src/webapp/docks.html
+Technical Description
+=====================
+* Source Data: Citibike Station Feed, URL taken from https://www.citibikenyc.com/system-data, under "Additional Resources"
+* Core parsing logic of source data in `src/main/java/explore/CitiBike`.  Only keep status if station is in the specified set.
+* Expose result through an HTTP endpoint, `src/main/java/servlet/CitiServlet`
+* Front End: AngularJS on html page to pull JSON from my HTTP endpoint, and display status in a table. See src/webapp/docks.html
 
-Next step: possibly add real time MTA Subway information to dashboard?
+Deployment
+==========
+Setup for running on Heroku:
+* mvn task to build package
+* startup script `Procfile`
+* Launcher is in `src/main/java/launch`

@@ -7,9 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by Julia on 1/15/2016.
- */
 public class ConfigHandler {
     private static com.typesafe.config.Config config = ConfigFactory.defaultApplication();
 
@@ -25,7 +22,7 @@ public class ConfigHandler {
 
     public static Set getFavoriteStations(String whichSet) {
         Set<String> faves = new HashSet<String>();
-        List<String> list = Collections.emptyList();
+        List<String> list;
         try {
             list = config.getStringList("citibike2.stations.favorites." + whichSet);
         } catch (Exception e) {
