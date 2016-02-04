@@ -11,9 +11,9 @@ public class ConfigHandler {
     private static com.typesafe.config.Config config = ConfigFactory.defaultApplication();
 
     public static String getURL(String type) {
-        if("mta".equals(type)) {
-            String urlSource = config.getString("mta.url");
-            String apikey = config.getString("mta.apikey");
+        if("weather".equals(type)) {
+            String urlSource = config.getString("darksky.forecastUrl");
+            String apikey = config.getString("darksy.apikey");
             return urlSource.replace("{key}", apikey);
         } else {
             return config.getString("citibike2.statusUrl");

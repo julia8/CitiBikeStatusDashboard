@@ -8,6 +8,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class HttpHandler {
@@ -18,8 +19,7 @@ public class HttpHandler {
         try {
             getRequest = new HttpGet(url);
             HttpResponse response = client.execute(getRequest);
-            Gson g = new Gson();
-            return g.fromJson(new InputStreamReader(response.getEntity().getContent()), JsonObject.class);
+            return JsonHandler.getJsonObjectFromStream(new InputStreamReader(response.getEntity().getContent()));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -29,4 +29,6 @@ public class HttpHandler {
         }
         return null;
     }
+
+
 }
