@@ -2,6 +2,8 @@ package servlet;
 
 import com.google.gson.JsonElement;
 import explore.CitiBike;
+import util.HttpDataHandler;
+import util.IInputDataHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +17,6 @@ import java.io.IOException;
         urlPatterns = {"/bike/*"}
 )
 public class CitiServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -28,6 +29,10 @@ public class CitiServlet extends HttpServlet {
 
     protected JsonElement getStatus(String query) {
         String whichSet = query == null ? "chelsea" : query;
-        return CitiBike.getStatus(whichSet);
+        return (new CitiBike(getHandler())).getStatus(whichSet);
+    }
+
+    protected IInputDataHandler getHandler() {
+        return new HttpDataHandler();
     }
 }

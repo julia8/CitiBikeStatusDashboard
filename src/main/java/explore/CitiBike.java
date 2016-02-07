@@ -4,20 +4,21 @@ package explore;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import util.ConfigHandler;
-import util.HttpHandler;
 
-import java.util.Iterator;
+import util.ConfigHandler;
+import util.IInputDataHandler;
+
 import java.util.Set;
 
 public class CitiBike {
-    public static void main(String[] args) {
-        System.out.println(getStatus("default").toString());
+    IInputDataHandler inputDataHandler;
+    public CitiBike(IInputDataHandler inputDataHandler) {
+        this.inputDataHandler = inputDataHandler;
     }
 
-    public static JsonElement getStatus(String whichSet) {
+    public JsonElement getStatus(String whichSet) {
 
-        JsonObject obj = HttpHandler.getJsonFromUrl(ConfigHandler.getURL("citibike"));
+        JsonObject obj = inputDataHandler.getJsonFrom(ConfigHandler.getURL("citibike"));
         JsonElement r = obj.get("stationBeanList");
         Set<String> favoriteStations = ConfigHandler.getFavoriteStations(whichSet);
 
