@@ -9,15 +9,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-/**
- * Created by Julia on 2/4/2016.
- */
 public class DataFileHandler extends JsonHandler implements IInputDataHandler {
     public JsonObject getJsonFrom(String url) {
+        return (JsonObject)getObjectFrom(url, new JsonObject());
+    }
+
+    public Object getObjectFrom(String url, Object obj) {
         InputStream fis = null;
         try {
             fis = ClassLoader.getSystemResourceAsStream(url);
-            return getJsonObjectFromStream(new InputStreamReader(fis));
+            return getObjectFromStream(new InputStreamReader(fis), obj);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

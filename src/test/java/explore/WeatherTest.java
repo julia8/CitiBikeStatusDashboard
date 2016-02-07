@@ -1,5 +1,7 @@
 package explore;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.typesafe.config.ConfigFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,6 +19,10 @@ public class WeatherTest {
 
     @Test
     public void testGetCurrentConditions() throws Exception {
-        (new Weather(new DataFileHandler())).getCurrentConditions();
+        JsonElement elem = (new Weather(new DataFileHandler())).getCurrentConditions();
+        JsonObject obj = elem.getAsJsonObject();
+        System.out.println("temp:"+ obj.toString());
+        assertEquals("52.98", obj.get("currentTemp").getAsString());
+        assertEquals("Mostly Cloudy", obj.get("summary").getAsString());
     }
 }

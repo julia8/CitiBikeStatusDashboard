@@ -12,4 +12,9 @@ public abstract class JsonHandler {
         Gson g = new Gson();
         return g.fromJson(streamReader, JsonObject.class);
     }
+
+    protected static Object getObjectFromStream(InputStreamReader streamReader, Object obj) throws IOException {
+        Gson g = new Gson();
+        return g.fromJson(streamReader, obj.getClass());
+    }
 }

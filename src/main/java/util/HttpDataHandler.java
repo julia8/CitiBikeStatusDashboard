@@ -29,4 +29,9 @@ public class HttpDataHandler extends JsonHandler implements IInputDataHandler {
         return null;
     }
 
+    public Object getObjectFrom(String url, Object obj) {
+        return null;
+    }
+
+
 }
