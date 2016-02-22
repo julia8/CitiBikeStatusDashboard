@@ -5,7 +5,8 @@ public class Forecast {
     private float longitude;
     private String timezone;
     private int offset;
-    private Currently currently;
+    private Data currently;
+    private Details hourly;
 
     public float getLatitude() {
         return latitude;
@@ -38,11 +39,19 @@ public class Forecast {
         this.offset = offset;
     }
 
-    public Currently getCurrently() {
+    public Data getCurrently() {
         return currently;
     }
 
-    public void setCurrently(Currently currently) {
+    public void setCurrently(Data currently) {
         this.currently = currently;
+    }
+
+    public Details getHourly() {
+        return hourly;
+    }
+
+    public void setHourly(Details hourly) {
+        this.hourly = hourly;
     }
 }

@@ -1,12 +1,15 @@
 package explore.data.darksky;
 
-public class Currently {
+public class Data {
     private long time;
     private String summary;
+    private float precipIntensity;
     private float precipProbability;
+    private String precipType;
     private float temperature;
     private float apparentTemperature;
     private float windSpeed;
+    private float humidity;
 
     public long getTime() {
         return time;
@@ -56,5 +59,27 @@ public class Currently {
         this.windSpeed = windSpeed;
     }
 
+    public float getPrecipIntensity() {
+        return precipIntensity;
+    }
 
+    public void setPrecipIntensity(float precipIntensity) {
+        this.precipIntensity = precipIntensity;
+    }
+
+    public String getPrecipType() {
+        return precipType;
+    }
+
+    public void setPrecipType(String precipType) {
+        this.precipType = precipType;
+    }
+
+    public float getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(float humidity) {
+        this.humidity = humidity;
+    }
 }
