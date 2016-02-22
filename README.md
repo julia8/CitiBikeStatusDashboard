@@ -8,7 +8,7 @@ Technical Description
 * Source Data: Citibike Station Feed, URL taken from https://www.citibikenyc.com/system-data, under "Additional Resources"
 * Core parsing logic of source data in `src/main/java/explore/CitiBike`.  Only keep status if station is in the specified set.
 * Expose result through an HTTP endpoint, `src/main/java/servlet/CitiServlet`
-* Front End: AngularJS on html page to pull JSON from my HTTP endpoint, and display status in a table. See src/webapp/docks.html
+* Front End: React table on html page to pull JSON from my HTTP endpoint, and display status in a table. See src/webapp/docks.html
 
 Deployment
 ==========
