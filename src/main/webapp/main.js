@@ -6,19 +6,51 @@ const ReactDOM = require('react-dom')
 const {Table,Column,Cell} = require('fixed-data-table');
 
 var WeatherTable = React.createClass({
+  getInitialState: function() {
+    return {
+      weatherHourly: []
+    };
+  },
   render() {
     return (
       <Table
               rowHeight={25}
-              rowsCount={5}
-              width={100}
-              height={100}
+              rowsCount={this.state.weatherHourly.length}
+              width={425}
+              height={this.state.weatherHourly.length * 25 + 30}
               headerHeight={28}>
         <Column
-          header={<Cell>Status</Cell>}
+          header={<Cell>Time</Cell>}
            cell={props => (
             <Cell {...props}>
-              Some text value
+              {this.state.weatherHourly[props.rowIndex]["time"]}
+            </Cell>
+            )}
+          width={100}
+        />
+        <Column
+          header={<Cell>Summary</Cell>}
+           cell={props => (
+            <Cell {...props}>
+              {this.state.weatherHourly[props.rowIndex]["summary"]}
+            </Cell>
+            )}
+          width={100}
+        />
+        <Column
+          header={<Cell>Temp</Cell>}
+           cell={props => (
+            <Cell {...props}>
+              {this.state.weatherHourly[props.rowIndex]["temp"]}
+            </Cell>
+            )}
+          width={100}
+        />
+        <Column
+          header={<Cell>Feels Like</Cell>}
+           cell={props => (
+            <Cell {...props}>
+              {this.state.weatherHourly[props.rowIndex]["feelsLike"]}
             </Cell>
             )}
           width={100}
